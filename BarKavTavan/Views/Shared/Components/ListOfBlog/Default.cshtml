@@ -1,0 +1,32 @@
+﻿@model IEnumerable<blogs>
+
+<table class="table">
+    <tr>
+        <td>تصویر</td>
+        <td>تاریخ</td>
+        <td>توسط</td>
+        <td>خلاصه توضیحات</td>
+        <td>عنوان</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="/images/@item.image" class="img-fluid w-50"></td>
+            <td>@item.datetime</td>
+            <td>@item.Username</td>
+            <td>@item.litledes</td>
+            <td>@item.titleb</td>
+            <td>
+                
+                <a class="btn btn-danger btn-sm" asp-action="Remove" >حذف</a>
+                
+            </td>
+           
+        </tr>
+    }
+    
+    </tr>
+
+
+</table>

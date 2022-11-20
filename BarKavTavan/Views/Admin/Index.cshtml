@@ -1,0 +1,47 @@
+﻿@model BarKavTavan.Domain.Entities.blogs
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-3">
+        <form asp-action="Index" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">توضیحات</label>
+                <textarea asp-for="description" class="form-control"></textarea>
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">عنوان</label>
+                <input asp-for="titleb" class="form-control" />
+                <span asp-validation-for="titleb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"> خلاصه توضیحات</label>
+                <input asp-for="litledes" class="form-control" />
+                <span asp-validation-for="litledes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">آپلود تصویر</label>
+                <input type="file" asp-for="image" class="form-control"  />
+                <span asp-validation-for="image" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="پست" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-9 pre-scrollable" style="margin-top:35px"> 
+        <vc:list-of-blog></vc:list-of-blog>
+    </div>
+</div>
+
+
