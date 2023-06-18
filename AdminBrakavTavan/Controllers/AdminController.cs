@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using AdminBarKavTavan.Services;
-using AdminBarKavTavan.Domain.ViewModel;
-using AdminBarKavTavan.Entities;
+using BarKavTavan.Services;
+using BarKavTavan.Domain.ViewModel;
+using BarKavTavan.Domain.Entities;
 
 namespace AdminBrakavTavan.Controllers
 {
@@ -13,11 +13,13 @@ namespace AdminBrakavTavan.Controllers
         private readonly IUser _u;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IBlog _b;
+       
 
         public AdminController(IUser u, IBlog b, IHttpContextAccessor httpContextAccessor)
         {
             _u = u;
             _b = b;
+            
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -126,6 +128,13 @@ namespace AdminBrakavTavan.Controllers
 
 
         }
+
+
+        
+       
+        
+
+
 
     }
 

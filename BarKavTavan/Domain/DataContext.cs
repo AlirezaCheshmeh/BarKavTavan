@@ -13,5 +13,7 @@ namespace BarKavTavan.Domain
         public DbSet<User> User { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<blogs> Blog { get; set; }
+
+        public DbSet<Project> Project { get; set; }
     }
 }

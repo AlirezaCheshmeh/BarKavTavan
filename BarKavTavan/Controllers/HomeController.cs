@@ -50,5 +50,11 @@ namespace BarKavTavan.Controllers
 
             return View(r);
         }
+
+        public IActionResult service()
+        {
+
+            return View();
+        }
     }
 }

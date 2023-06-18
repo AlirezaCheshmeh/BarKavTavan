@@ -2,8 +2,10 @@ using BarKavTavan.Domain;
 using BarKavTavan.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
 using System.Net;
 using System.Security.Claims;
 
@@ -19,6 +21,7 @@ builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<DataContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Con"));
+    
 });
 
 builder.Services.AddTransient<IUser, UserR>();
@@ -29,22 +32,24 @@ builder.Services.AddAuthentication(option =>
     option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     
+    
    
 }).AddCookie(option =>
 {
     option.LoginPath = "/Authentication/LogIn";
     option.LogoutPath = "/Authentication/SignOut";
     option.AccessDeniedPath = "/Authentication/Active";
+    
 
 
 });
 
 
-//builder.Services.AddAuthorization(options =>
-//{
-//    options.AddPolicy("PolicyRequireRole", policy => policy.RequireRole("1"));
-//}
-//  );
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("PolicyRequireRole", policy => policy.RequireRole("1"));
+}
+  );
 
 
 
