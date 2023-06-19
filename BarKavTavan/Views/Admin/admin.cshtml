@@ -12,24 +12,29 @@
 <hr />
 <div class="testbox">
 
-    <form asp-action="admin" method="post">
+    <form asp-action="admin">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             @* <label asp-for="Email" class="control-label"></label>*@
-            <label id="icon" for="name"><i class="icon-user m-auto "></i></label>
-            <input id="name" placeholder="نام کاربری" asp-for="Mobile" class="form-controlm-0 m-auto" />
-            <span asp-validation-for="Mobile" class="text-danger"></span>
+            <label id="icon" asp-for="UserName"><i class="icon-user m-auto "></i></label>
+            <input placeholder="نام کاربری" asp-for="UserName" class="form-controlm-0 m-auto" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
         <div class="form-group">
             @* <label asp-for="Email" class="control-label"></label>*@
-            <label id="icon" for="name"><i class="icon-shield m-auto "></i></label>
-            <input id="name" type="password" placeholder="پسورد" asp-for="password" class="form-controlm-0 m-auto" />
+            <label id="icon" asp-for="password"><i class="icon-shield m-auto "></i></label>
+            <input type="password" placeholder="پسورد" asp-for="password" class="form-controlm-0 m-auto" />
             <span asp-validation-for="password" class="text-danger"></span>
         </div>
-
-        <div class="form-group">
-            <input type="submit" value="ورود" class="btn btn-primary" style="margin-left: 104px" />
+        <div class="form-group" style="margin-left : 20px">
+            <input type="submit" value="ورود" class="btn btn-primary" />
+            <a asp-action="Register">
+                <input type="button" value="ثبت نام " class="btn btn-primary" style="margin-left: 70px ;
+                    background-color : darkgray" />
+            </a>
         </div>
+
+
     </form>
 
 </div>
@@ -157,7 +162,7 @@
 
     input[type=text], input[type=password] {
         width: 200px;
-        height: 34px;
+        height: 33px;
         -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
         -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
         border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;

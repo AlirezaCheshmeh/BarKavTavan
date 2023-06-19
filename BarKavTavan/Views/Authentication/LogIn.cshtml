@@ -12,13 +12,13 @@
 <hr />
 <div class="testbox">
 
-    <form asp-action="LogIn">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="LogIn" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
         <div class="form-group">
             @* <label asp-for="Email" class="control-label"></label>*@
             <label id="icon" for="name"><i class="icon-user m-auto "></i></label>
-            <input id="name" placeholder="نام کاربری" asp-for="Mobile" class="form-controlm-0 m-auto" />
-            <span asp-validation-for="Mobile" class="text-danger"></span>
+            <input id="name" placeholder="نام کاربری" asp-for="UserName" class="form-controlm-0 m-auto" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
         <div class="form-group">
             @* <label asp-for="Email" class="control-label"></label>*@

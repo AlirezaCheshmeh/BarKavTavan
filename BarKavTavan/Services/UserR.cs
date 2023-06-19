@@ -1,4 +1,5 @@
-﻿using BarKavTavan.Domain;
+﻿using Azure.Identity;
+using BarKavTavan.Domain;
 using BarKavTavan.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -52,11 +53,12 @@ namespace BarKavTavan.Services
             return r.RoleName;
         }
 
-        public User Login(string Mobile, string password)
+       public User Login(string UserName, string password)
         {
             string hashpassword = Utility.HashPssword(password);
-            return _db.User.FirstOrDefault(c => c.UserName == Mobile && c.password == hashpassword);
+            return _db.User.FirstOrDefault(c => c.UserName == UserName && c.password == hashpassword);
         }
+      
 
         public bool MobileNumberExist(string Mobile)
         {

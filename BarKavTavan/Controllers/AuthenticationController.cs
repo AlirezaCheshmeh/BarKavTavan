@@ -33,21 +33,18 @@ namespace BarKavTavan.Controllers
         [HttpPost]
         public IActionResult LogIn(LogInViewModel Vm)
         {
-           if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var res = _u.Login(Vm.Mobile, Vm.password);
+                var res = _u.Login(Vm.UserName, Vm.password);
                 if (res != null)
                 {
 
                     var claim = new List<Claim>()
-                        {
+                    {
                             new Claim(ClaimTypes.NameIdentifier,res.Userid.ToString()),
                             new Claim(ClaimTypes.Name,res.UserName),
                             new Claim(ClaimTypes.Role , res.Roleid.ToString())
-
-
-
-                        };
+                    };
 
                     var Identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -70,19 +67,7 @@ namespace BarKavTavan.Controllers
                     HttpContext.Session.SetString(b, r.ToString());
 
 
-
-                    var e = _u.getRoleName(res.Roleid);
-                    if ((_u.getRoleName(res.Roleid)) == "admin")
-                    {
-
-
-                        //    return RedirectToAction("Index", "Admin");
-                        //}
-                        //else
-                        //{
-                        return RedirectToAction("Index", "Home");
-                    }
-
+                    return RedirectToAction("Index", "Home");
 
                 }
 

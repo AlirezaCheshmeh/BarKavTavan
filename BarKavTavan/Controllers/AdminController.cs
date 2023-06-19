@@ -76,7 +76,7 @@ namespace AdminBrakavTavan.Controllers
 
 
 
-        [Authorize(Roles ="1")]
+        [Authorize]
         public IActionResult Postblog()
         {
             return View();
@@ -135,24 +135,23 @@ namespace AdminBrakavTavan.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult admin(LogInViewModel Vm)
+        public  IActionResult admin(LogInViewModel Vm)
         {
-            
-                var res = _u.Login(Vm.Mobile, Vm.password);
-            
+
+            if (ModelState.IsValid)
+            {
+                var res = _u.Login(Vm.UserName, Vm.password);
                 if (res != null)
                 {
 
                     var claim = new List<Claim>()
-                            {
-                                new Claim(ClaimTypes.NameIdentifier,res.Userid.ToString()),
-                                new Claim(ClaimTypes.Name,res.UserName),
-                                new Claim(ClaimTypes.Role , res.Roleid.ToString())
-                            };
+                    {
+                            new Claim(ClaimTypes.NameIdentifier,res.Userid.ToString()),
+                            new Claim(ClaimTypes.Name,res.UserName),
+                            new Claim(ClaimTypes.Role , res.Roleid.ToString())
+                    };
 
-                    var Identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults
-                                   .AuthenticationScheme);
-
+                    var Identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(new[] { Identity });
                     Thread.CurrentPrincipal = principal;
                     HttpContext.SignInAsync(principal);
@@ -163,19 +162,33 @@ namespace AdminBrakavTavan.Controllers
                     string key = "role";
                     HttpContext.Session.SetString(key, Rolename.ToString());
 
+
+
+
+
+
                     string b = "sa";
                     HttpContext.Session.SetString(b, r.ToString());
+
+
 
                     var e = _u.getRoleName(res.Roleid);
                     if ((_u.getRoleName(res.Roleid)) == "admin")
                     {
 
-                        return RedirectToAction("PostBlog", "Admin");
 
+                        //    return RedirectToAction("Index", "Admin");
+                        //}
+                        //else
+                        //{
+                        return RedirectToAction("postBlog", "Admin");
                     }
 
+                    return RedirectToAction("Index", "Home");
+
                 }
-            
+
+            }
 
             return View();
         }

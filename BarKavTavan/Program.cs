@@ -19,6 +19,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthorization();
 builder.Services.AddDbContext<DataContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Con"));
     
@@ -45,11 +46,11 @@ builder.Services.AddAuthentication(option =>
 });
 
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("PolicyRequireRole", policy => policy.RequireRole("1"));
-}
-  );
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("PolicyRequireRole", policy => policy.RequireRole("1"));
+//}
+//  );
 
 
 
@@ -70,8 +71,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
-app.UseAuthorization();
 app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
