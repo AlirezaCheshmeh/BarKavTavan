@@ -42,6 +42,10 @@ namespace BarKavTavan.Controllers
             return View(await _db.Blog.OrderByDescending(p => p.blogid).Skip((p - 1) * pageSize)
                     .Take(pageSize).ToListAsync());
         }
+        public IActionResult complatePost()
+        {
+            return View();
+        }
 
         [HttpGet("{id}")]
         public IActionResult complatePost(int id)
